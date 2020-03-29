@@ -1,0 +1,65 @@
+#include <stdio.h>
+#define  SIZE 10
+void main()
+{
+    int num[SIZE];
+    int i, j, temp, s_num,s_pos;
+    int low, mid, high;
+ 
+
+    printf("\nEnter num Elements  in \n");
+    for (i = 0; i < SIZE; i++)
+    {
+        scanf("%d", &num[i]);
+    }
+    printf("\nnum elements are: \n");
+    for (i = 0; i < SIZE; i++)
+    {
+        printf("%d ", num[i]);
+    }
+	
+	//sort array in asceding order by bubble sort algorithm
+    for (i = 0; i < SIZE; i++)
+    {
+        for (j = 0; j < (SIZE - i - 1); j++)
+        {
+            if (num[j] > num[j + 1])
+            {
+                temp = num[j];
+                num[j] = num[j + 1];
+                num[j + 1] = temp;
+            }
+        }
+    }
+    printf("\nSorted num is...\n");
+    for (i = 0; i < SIZE; i++)
+    {
+        printf("%d ", num[i]);
+    }
+
+    printf("\nEnter the element to be searched \n");
+    scanf("%d", &s_num);
+
+    //Binary search algorithm
+    low = 1;
+    high = SIZE;
+
+    do
+    {
+        mid = (low + high) / 2;
+        if (s_num < num[mid])
+            high = mid - 1;
+        else if (s_num > num[mid])
+            low = mid + 1;
+    } while (s_num != num[mid] && low <= high);
+    if (s_num == num[mid])
+    {
+		s_pos=mid;
+		printf("\nSearch item present in array at position %d \n",s_pos+1);
+    }
+    else
+    {
+        printf("\nSearch item not found \n");
+		s_pos=-1;
+    }
+}
